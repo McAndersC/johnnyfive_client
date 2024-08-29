@@ -1,12 +1,12 @@
-
+import JohnnyFive from "../../components/mc/JohnnyFive/JohnnyFive";
 
 const HomePage = () => {
 
-    console.log('asd')
     return (
         <div className={"center-page"}>
-            Johnny
+            <JohnnyFive></JohnnyFive>
         </div>
     );
 };
+
 export default HomePage;
