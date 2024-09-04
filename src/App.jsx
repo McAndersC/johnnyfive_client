@@ -1,5 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
+import HowTo from "./pages/howto/HowTo";
 
 
 function App() {
@@ -8,6 +9,10 @@ function App() {
     {
       path: "/",
       element : <HomePage></HomePage>
+    },
+    {
+      path: "/howto",
+      element : <HowTo></HowTo>
     },
   ]);
 

@@ -5,6 +5,8 @@ const JohnnyFive = () => {
 
     
     const [isConnected, setIsConnected] = useState(false);
+
+    const [lightsOn, setLightsOn] = useState(false)
     // Vi benytter en useEffect til at tilgå vores socket i forhold til on/off connection
     useEffect( () => {
         
@@ -29,6 +31,19 @@ const JohnnyFive = () => {
         
     }, [])  
 
+    useEffect( () => {
+
+        const onLightsOn = () => {
+
+            console.log('LYSET ER TÆNDT')
+            setLightsOn(true)
+
+        }
+
+        socket.on('lightsOn', onLightsOn);
+
+    },[])
+
     const blinkJohnny = () => {
 
         socket.emit('blink', {delay : 200});
@@ -41,7 +56,7 @@ const JohnnyFive = () => {
 
     }
 
-    const tirnOff = () => {
+    const turnOff = () => {
 
         socket.emit('turnOff');
 
@@ -52,8 +67,10 @@ const JohnnyFive = () => {
             <h1>Johnny is {isConnected ? 'connected' : 'disconnected'}</h1>
 
             <button onClick={blinkJohnny}>Blink Johnny</button>
-            <button onClick={turnOn}>ON</button>
-            <button onClick={tirnOff}>OFF</button>
+
+            {lightsOn ? <button onClick={turnOff}>OFF</button> :  <button onClick={turnOn}>ON</button>}
+          
+            
         </div>
     );
 };
